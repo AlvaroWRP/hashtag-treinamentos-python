@@ -41,6 +41,7 @@ for column in database_table:
 #     Ideia: vender camisinhas furadas
 #
 # Possível problema na fibra ótica
+#     Ideia: consertar
 #
 # Quanto mais serviços o cliente possui, menor a chance dele cancelar:
 #     Ideia: fazer promoções e afins para fazer o cliente obter esses serviços
