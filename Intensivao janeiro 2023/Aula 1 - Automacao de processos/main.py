@@ -22,22 +22,22 @@ pag.doubleClick(385, 290)
 
 # abrir pasta "Exportar"
 pag.sleep(2)
-pag.doubleClick(385, 290)
+pag.doubleClick()
 
 # fazer download da planilha do excel
 pag.sleep(2)
-pag.rightClick(385, 290)
+pag.rightClick()
 pag.click(575, 770)
 pag.sleep(5)
 pag.click(790, 505)
 pag.sleep(2)
 pag.click(1900, 1010)
 
-excel_path = 'C:\\Users\\alvar\\Downloads\\Vendas - Dez.xlsx'
+dataframe_path = 'C:\\Users\\alvar\\Downloads\\Vendas - Dez.xlsx'
+dataframe_table = pd.read_excel(dataframe_path)
 
-excel_table = pd.read_excel(excel_path)
-excel_table_total_income = sum(excel_table['Valor Final'])
-excel_table_total_quantity = sum(excel_table['Quantidade'])
+dataframe_table_total_income = sum(dataframe_table['Valor Final'])
+dataframe_table_total_quantity = sum(dataframe_table['Quantidade'])
 
 # abrir o e-mail
 pag.hotkey('ctrl', 't')
@@ -59,8 +59,8 @@ pag.press('tab')
 
 message = f'''Olá,
 
-O faturamento total foi de: R${excel_table_total_income:,.2f}
-A quantidade de produtos vendidos foi de: {excel_table_total_quantity:,}
+O faturamento total foi de: R${dataframe_table_total_income:,.2f}
+A quantidade de produtos vendidos foi de: {dataframe_table_total_quantity:,}
 
 Att.
 '''
@@ -71,7 +71,7 @@ pag.hotkey('ctrl', 'v')
 
 # anexar arquivo excel
 pag.click(1425, 1005)
-pyperclip.copy(excel_path)
+pyperclip.copy(dataframe_path)
 pag.hotkey('ctrl', 'v')
 pag.press('enter')
 

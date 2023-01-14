@@ -1,34 +1,33 @@
 import pandas as pd
 import plotly.express as px
 
-database_path = 'C:\\Users\\alvar\\Downloads\\telecom_users.csv'
-
-database_table = pd.read_csv(database_path)
+dataframe_path = 'C:\\Users\\alvar\\Desktop\\VS\\Hashtag\\Intensivao janeiro 2023\\Aula 2 - Analise de dados\\telecom_users.csv'
+dataframe_table = pd.read_csv(dataframe_path)
 
 # remoção da coluna com dados não úteis para a análise
-database_table = database_table.drop('Unnamed: 0', axis=1)
+dataframe_table = dataframe_table.drop('Unnamed: 0', axis=1)
 
 # transforma a coluna para o tipo de dado correto
-database_table['TotalGasto'] = pd.to_numeric(database_table['TotalGasto'], errors='coerce')
+dataframe_table['TotalGasto'] = pd.to_numeric(dataframe_table['TotalGasto'], errors='coerce')
 
 # remove as colunas que possuem todos os valores vazios
 # devido a uma das colunas ser completamente vazia, ela deve ser removida primeiro para não limpar a base de dados completa
-database_table = database_table.dropna(axis=1, how='all')
+dataframe_table = dataframe_table.dropna(axis=1, how='all')
 
 # remove as linhas que possuem todos os valores vazios
-database_table = database_table.dropna(axis=0, how='any')
+dataframe_table = dataframe_table.dropna(axis=0, how='any')
 
-database_table.info()
+dataframe_table.info()
 print()
 
 # mostrar quantidades de "Sim" e "Não" na coluna "Churn", e em seguida em porcentagem
-print(database_table.value_counts(['Churn']), '\n')
-print(database_table.value_counts(['Churn'], normalize=True).map('{:.2%}'.format))
+print(dataframe_table.value_counts(['Churn']), '\n')
+print(dataframe_table.value_counts(['Churn'], normalize=True).map('{:.2%}'.format))
 
 # cria um gráfico para cada coluna, com exceção da "IDCliente", que não é útil no caso
-for column in database_table:
+for column in dataframe_table:
     if column != 'IDCliente':
-        chart = px.histogram(database_table, x=column, color='Churn', text_auto=True, color_discrete_sequence=['blue', 'red'])
+        chart = px.histogram(dataframe_table, x=column, color='Churn', text_auto=True, color_discrete_sequence=['blue', 'red'])
         chart.show()
 
 # CONCLUSÕES OBTIDAS COM OS GRÁFICOS:
