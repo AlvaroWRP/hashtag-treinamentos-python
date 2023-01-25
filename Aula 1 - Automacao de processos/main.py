@@ -1,6 +1,6 @@
 import pyautogui as pag
-import pyperclip
 import pandas as pd
+import pyperclip
 
 pag.PAUSE = 1
 pag.FAILSAFE = True
