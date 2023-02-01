@@ -25,7 +25,7 @@ chrome.get('https://www.melhorcambio.com/ouro-hoje')
 gold_quotation = chrome.find_element(By.XPATH, '//*[@id="comercial"]').get_attribute('value')
 gold_quotation = gold_quotation.replace(',', '.')
 
-dataframe_path = 'C:\\Users\\alvar\\Desktop\\VS\\Hashtag\\Aula 3 - Automacao web\\Produtos.xlsx'
+dataframe_path = 'Aula 3 - Automacao web\\Produtos.xlsx'
 dataframe_table = pd.read_excel(dataframe_path)
 
 # transforma as cotações antigas para as atuais
@@ -38,4 +38,4 @@ dataframe_table['Preço de Compra'] = dataframe_table['Preço Original'] * dataf
 dataframe_table['Preço de Venda'] = dataframe_table['Preço de Compra'] * dataframe_table['Margem']
 
 # cria um novo arquivo com as atualizações
-dataframe_table.to_excel('C:\\Users\\alvar\\Desktop\\VS\\Hashtag\\Aula 3 - Automacao web\\Produtos atualizados.xlsx', index=False)
+dataframe_table.to_excel('Aula 3 - Automacao web\\Produtos atualizados.xlsx', index=False)

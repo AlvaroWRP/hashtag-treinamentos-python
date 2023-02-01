@@ -29,7 +29,7 @@ def confirm():
         checkbox.grid_remove()
         checkbox_button.grid_remove()
         force_confirm.grid_remove()
-        approved_image = Image.open('C:\\Users\\alvar\\Desktop\\VS\\Hashtag\\Aula tkinter teste\\pp_like.png')
+        approved_image = Image.open('Aula tkinter teste\\pp_like.png')
 
         resized_approved_image = approved_image.resize((800, 600))
         
