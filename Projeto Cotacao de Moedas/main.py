@@ -1,4 +1,4 @@
-# na parte de atualizar cotações múltiplas, somente o último dia selecionado é passado pro Excel. Talvez um erro na API?
+# na parte de atualizar cotações múltiplas, somente o último dia selecionado é passado pro Excel. Possível erro na API.
 
 import requests
 import numpy as np
@@ -23,6 +23,9 @@ coins = list(coins_info.keys())
 window = tk.Tk()
 
 window.title('Busca de Cotações de Moedas')
+
+window_icon = tk.PhotoImage(file='Projeto Cotacao de Moedas\\coin.png')
+window.iconphoto(True, window_icon)
 
 # pega a resolução do monitor
 screen_width = window.winfo_screenwidth()
@@ -103,6 +106,7 @@ def update_quotes():
 
         coins_column = df.iloc[:, 0]
 
+        # itera em cada moeda nas colunas do excel e faz a requisição da API
         for coin in coins_column:
             link = f'https://economia.awesomeapi.com.br/json/daily/{coin}-BRL/?start_date={initial_date_year}{initial_date_month}{initial_date_day}&end_date={ending_date_year}{ending_date_month}{ending_date_day}'
 
@@ -110,6 +114,7 @@ def update_quotes():
 
             coins_info = request.json()
 
+            # itera as informações de cada moeda
             for info in coins_info:
                 bid = float(info['bid'])
                 timestamp = int(info['timestamp'])
@@ -117,6 +122,7 @@ def update_quotes():
                 date = datetime.fromtimestamp(timestamp)
                 date = date.strftime('%d/%m/%Y')
 
+                # caso a coluna com o dia ainda não exista, cria ela e a preenche com NaN
                 if date not in df:
                     df[date] = np.nan
 
@@ -160,7 +166,7 @@ get_quote_button.grid(row=3, column=2, sticky='nsew', padx=15, pady=15)
 multiple_quote_title = tk.Label(text='Cotação de múltiplas moedas', borderwidth=5, relief='solid')
 multiple_quote_title.grid(row=4, column=0, columnspan=3, sticky='nsew', padx=15, pady=15, ipadx=3, ipady=3)
 
-select_file_label = tk.Label(text='Selecione um arquivo em Excel (.xlsx) com as moedas na coluna A', anchor='e')
+select_file_label = tk.Label(text='Selecione um arquivo em Excel (.xlsx) com as moedas na primeira coluna', anchor='e')
 select_file_label.grid(row=5, column=0, columnspan=2, sticky='nsew', padx=15, pady=15)
 
 file = ''
