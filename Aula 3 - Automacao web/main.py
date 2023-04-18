@@ -8,14 +8,14 @@ chrome = webdriver.Chrome()
 # pega a cotação do dólar
 chrome.get('https://www.google.com/')
 
-chrome.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input').send_keys('cotação do dólar', Keys.ENTER)
+chrome.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea').send_keys('cotação do dólar', Keys.ENTER)
 
 dollar_quotation = chrome.find_element(By.XPATH, '//*[@id="knowledge-currency__updatable-data-column"]/div[1]/div[2]/span[1]').get_attribute('data-value')
 
 # pega a cotação do euro
 chrome.get('https://www.google.com/')
 
-chrome.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input').send_keys('cotação do euro', Keys.ENTER)
+chrome.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea').send_keys('cotação do euro', Keys.ENTER)
 
 euro_quotation = chrome.find_element(By.XPATH, '//*[@id="knowledge-currency__updatable-data-column"]/div[1]/div[2]/span[1]').get_attribute('data-value')
 
