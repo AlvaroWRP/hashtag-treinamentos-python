@@ -1,33 +1,55 @@
 from datetime import datetime
 
 class CheckingAccount:
-    def __init__(self, name, cpf):
-        self.name = name
-        self.cpf = cpf
+    """
+    Checking account class for bank clients.
+
+    Attributes:
+        id (str): A person's ID.
+        balance (int): The initial money after creating the account.
+        transactions (list): All transactions made in an account.
+    """
+
+    def __init__(self, id):
+        self.id = id
         self.balance = 0
         self.transactions = []
 
-    
+
     @staticmethod
     def _get_current_date_and_time():
+        """Gets the current time when a transaction is made.
+
+        Returns:
+            str: A string containing the date and time.
+        """
+
         return datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
 
 
     def _check_if_can_withdraw(self, money_to_withdraw):
         if self.balance - money_to_withdraw >= 0:
             return True
-        
+
         return False
 
 
     def _log_transaction(self, transaction_type, value):
-        date_and_time = self._get_current_date_and_time()
+        value = float(f'{value:,.2f}')
+
+        date_and_time = CheckingAccount._get_current_date_and_time()
 
         if transaction_type == 'deposit':
-            self.transactions.append(('Deposit:', value, '| New balance:', self.check_balance(), '| In:', date_and_time))
+            self.transactions.append(('Deposit:', value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
 
         elif transaction_type == 'withdraw':
-            self.transactions.append(('Withdraw:', -value, '| New balance:', self.check_balance(), '| In:', date_and_time))
+            self.transactions.append(('Withdraw:', -value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+
+        elif transaction_type == 'transference':
+            self.transactions.append(('Transference:', -value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+
+        elif transaction_type == 'receive':
+            self.transactions.append(('Received:', value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
 
 
     def deposit(self):
@@ -53,6 +75,20 @@ class CheckingAccount:
         else: print('\nYou do not have enough money.\n')
 
 
+    def transfer(self):
+        money_to_transfer = float(input('\nHow much money do you want to transfer? '))
+
+        permission_to_withdraw = self._check_if_can_withdraw(money_to_transfer)
+
+        if permission_to_withdraw:
+            self.balance -= money_to_transfer
+            destination_account.balance += money_to_transfer
+            print('\nTransference successful!\n')
+
+            self._log_transaction('transference', money_to_transfer)
+            destination_account._log_transaction('receive', money_to_transfer)
+
+
     def check_balance(self):
         return f'{self.balance:,.2f}'
 
@@ -64,25 +100,37 @@ class CheckingAccount:
             print(*log)
 
 
-account_1 = CheckingAccount('Álvaro', '123.456.789-00')
+my_account = CheckingAccount('12345')
+destination_account = CheckingAccount('67890')
 
 while True:
-    print('Make a deposit - 1 | Withdraw cash - 2 | Check your balance - 3 | Finish - 4')
+    print('Make a deposit - 1 | ' \
+          'Withdraw cash - 2 | ' \
+          'Check your balance - 3 | ' \
+          'Transfer to another account - 4 | ' \
+          'Finish - 5')
 
     user_choice = input('Choose an option: ')
 
     if user_choice == '1':
-        account_1.deposit()
+        my_account.deposit()
 
     elif user_choice == '2':
-        account_1.withdraw()
+        my_account.withdraw()
 
     elif user_choice == '3':
-        balance = account_1.check_balance()
+        balance = my_account.check_balance()
         print(f'\nYour current balance is: ${balance}\n')
-    
-    elif user_choice == '4': break
-    
+
+    elif user_choice == '4':
+        my_account.transfer()
+
+    elif user_choice == '5': break
+
     else: print('\nInvalid option.\n')
 
-account_1.show_transactions_log()
+my_account.show_transactions_log()
+destination_account.show_transactions_log()
+
+# help(CheckingAccount)
+# help(CheckingAccount._get_current_date_and_time)
