@@ -1,10 +1,9 @@
-from bank_classes import CheckingAccount, CreditCard
+from checking_account_class import CheckingAccount
+from credit_card_class import CreditCard
+from agency_class import Agency
 
-# help(CheckingAccount)
-# help(CheckingAccount._get_current_date_and_time)
-
-my_account = CheckingAccount('111.222.333-44', '0001', '12345')
-destination_account = CheckingAccount('555.666.777-88', '0002', '67890')
+my_account = CheckingAccount('Álvaro', '111.222.333-44', '0001', '12345')
+destination_account = CheckingAccount('Nicolas', '555.666.777-88', '0002', '67890')
 
 while True:
     print('Make a deposit - 1 | ' \
@@ -35,11 +34,39 @@ while True:
 my_account.show_transactions_log()
 destination_account.show_transactions_log()
 
-my_credit_card = CreditCard('Álvaro', my_account)
-secondary_credit_card = CreditCard('Álvaro', my_account)
+my_credit_card = CreditCard(my_account)
+secondary_credit_card = CreditCard(my_account)
 
 my_account.show_credit_cards()
 
 my_credit_card.password = '1792'
 
 my_account.show_credit_cards()
+
+agency_1 = Agency(my_account)
+
+while True:
+    print('Get cash - 1 | ' \
+          'Check your balance - 2 | ' \
+          'Check ATM cash - 3 | ' \
+          'Finish - 4')
+
+    user_choice = input('Choose an option: ')
+
+    if user_choice == '1':
+        agency_1.get_money()
+
+    elif user_choice == '2':
+        balance = my_account.check_balance()
+        print(f'\nYour current balance is: ${balance}\n')
+
+    elif user_choice == '3':
+        atm_cash = agency_1.check_atm_cash()
+        print(f'\nTotal cash in ATM: ${atm_cash}\n')
+
+    elif user_choice == '4': break
+
+    else: print('\nInvalid option.\n')
+
+my_account.show_transactions_log()
+agency_1.show_transactions_log()

@@ -1,11 +1,12 @@
 from datetime import datetime
-import random
+
 
 class CheckingAccount:
     """
     Checking account class for bank clients.
 
     Attributes:
+        person_name (str): The person's name.
         person_id (str): A person's ID.
         agency (str): The agency number.
         account_number (str): The account's unique number.
@@ -14,9 +15,10 @@ class CheckingAccount:
         credit_cards (list): All credit cards linked to an account.
     """
 
-    def __init__(self, person_id, agency, account_number):
+    def __init__(self, person_name, person_id, agency_id, account_number):
+        self.person_name = person_name
         self.person_id = person_id
-        self.agency = agency
+        self.agency_id = agency_id
         self.account_number = account_number
         self._balance = 0
         self._transactions = []
@@ -34,29 +36,42 @@ class CheckingAccount:
         return datetime.now().strftime('%d/%m/%Y at %H:%M:%S')
 
 
-    def _check_if_can_withdraw(self, money_to_withdraw):
-        if self._balance - money_to_withdraw >= 0:
+    def _check_if_can_withdraw(self, value):
+        if self._balance - value >= 0:
             return True
 
         return False
 
 
     def _log_transaction(self, transaction_type, value):
-        value = float(f'{value:,.2f}')
+        value = float(f'{value:.2f}')
 
         date_and_time = CheckingAccount._get_current_date_and_time()
 
         if transaction_type == 'deposit':
-            self._transactions.append(('Deposit:', value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+            self._transactions.append(('Deposit:', value,
+                                       '| New balance:', self.check_balance(),
+                                       '| Date:', date_and_time))
 
         elif transaction_type == 'withdraw':
-            self._transactions.append(('Withdraw:', -value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+            self._transactions.append(('Withdraw:', -value,
+                                       '| New balance:', self.check_balance(),
+                                       '| Date:', date_and_time))
 
         elif transaction_type == 'transference':
-            self._transactions.append(('Transference:', -value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+            self._transactions.append(('Transference:', -value,
+                                       '| New balance:', self.check_balance(),
+                                       '| Date:', date_and_time))
 
         elif transaction_type == 'receive':
-            self._transactions.append(('Received:', value, '| New balance:', self.check_balance(), '| Date:', date_and_time))
+            self._transactions.append(('Received:', value,
+                                       '| New balance:', self.check_balance(),
+                                       '| Date:', date_and_time))
+
+        elif transaction_type == 'atm':
+            self._transactions.append(('ATM:', value,
+                                       '| New balance:', self.check_balance(),
+                                       '| Date:', date_and_time))
 
 
     def deposit(self):
@@ -90,6 +105,7 @@ class CheckingAccount:
         if permission_to_withdraw:
             self._balance -= money_to_transfer
             destination_account._balance += money_to_transfer
+            
             print('\nTransference successful!\n')
 
             self._log_transaction('transference', money_to_transfer)
@@ -117,58 +133,5 @@ class CheckingAccount:
             print()
 
 
-class CreditCard:
-    def __init__(self, owner, checking_account):
-        self.owner = owner
-        self.checking_account = checking_account
-        self._limit = 5_000
-        self._password = '1234'
-        self.cvv = CreditCard._generate_cvv()  # Card Verification Value
-        self.number = CreditCard._generate_number()
-        self.expiration_date = CreditCard._generate_expiration_date()
-
-        checking_account.credit_cards.append(self.__dict__)
-
-
-    @staticmethod
-    def _generate_number():
-        random_number = str(random.randint(1000_0000_0000_0000, 9999_9999_9999_9999))
-
-        first_section = random_number[:4]
-        second_section = random_number[4:8]
-        third_section = random_number[8:12]
-        fourth_section = random_number[12:]
-
-        return f'{first_section} {second_section} {third_section} {fourth_section}'
-
-
-    @staticmethod
-    def _generate_expiration_date():
-        month = datetime.now().month
-        year = datetime.now().year + 8
-
-        return datetime(year, month, 1).strftime('%m/%y')
-
-
-    @staticmethod
-    def _generate_cvv():
-        first_digit = random.randint(0, 9)
-        second_digit = random.randint(0, 9)
-        third_digit = random.randint(0, 9)
-
-        return f'{first_digit}{second_digit}{third_digit}'
-
-
-    @property
-    def password(self):
-        return self._password
-
-
-    @password.setter
-    def password(self, new_password):
-        if len(new_password) == 4 and new_password.isdigit():
-            self._password = new_password
-            print('Password changed!')
-
-        else:
-            print('Not a valid password.')
+# help(CheckingAccount)
+# help(CheckingAccount._get_current_date_and_time)
