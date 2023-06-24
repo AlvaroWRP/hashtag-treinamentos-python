@@ -105,7 +105,7 @@ class CheckingAccount:
         if permission_to_withdraw:
             self._balance -= money_to_transfer
             destination_account._balance += money_to_transfer
-            
+
             print('\nTransference successful!\n')
 
             self._log_transaction('transference', money_to_transfer)

@@ -49,7 +49,9 @@ while True:
     print('Get cash - 1 | ' \
           'Check your balance - 2 | ' \
           'Check ATM cash - 3 | ' \
-          'Finish - 4')
+          'Become a client - 4 | ' \
+          'Show all clients - 5 | ' \
+          'Finish - 6')
 
     user_choice = input('Choose an option: ')
 
@@ -64,7 +66,13 @@ while True:
         atm_cash = agency_1.check_atm_cash()
         print(f'\nTotal cash in ATM: ${atm_cash}\n')
 
-    elif user_choice == '4': break
+    elif user_choice == '4':
+        agency_1.become_client()
+
+    elif user_choice == '5':
+        agency_1.show_clients()
+
+    elif user_choice == '6': break
 
     else: print('\nInvalid option.\n')
 
