@@ -1,6 +1,6 @@
 from checking_account_class import CheckingAccount
 from credit_card_class import CreditCard
-from agency_class import Agency
+from agency_classes import Agency, StandardAgency, PremiumAgency, VirtualAgency
 
 my_account = CheckingAccount('Álvaro', '111.222.333-44', '0001', '12345')
 destination_account = CheckingAccount('Nicolas', '555.666.777-88', '0002', '67890')
@@ -48,7 +48,7 @@ agency_1 = Agency(my_account)
 while True:
     print('Get cash - 1 | ' \
           'Check your balance - 2 | ' \
-          'Check ATM cash - 3 | ' \
+          'Check agency cash - 3 | ' \
           'Become a client - 4 | ' \
           'Show all clients - 5 | ' \
           'Finish - 6')
@@ -63,8 +63,8 @@ while True:
         print(f'\nYour current balance is: ${balance}\n')
 
     elif user_choice == '3':
-        atm_cash = agency_1.check_atm_cash()
-        print(f'\nTotal cash in ATM: ${atm_cash}\n')
+        agency_cash = agency_1.check_agency_cash()
+        print(f'\nTotal cash in agency: ${agency_cash}\n')
 
     elif user_choice == '4':
         agency_1.become_client()
@@ -78,3 +78,28 @@ while True:
 
 my_account.show_transactions_log()
 agency_1.show_transactions_log()
+
+standard_agency = StandardAgency(my_account)
+print(standard_agency.check_agency_cash(), '\n')
+
+premium_agency = PremiumAgency(my_account)
+print(premium_agency.check_agency_cash(), '\n')
+
+virtual_agency = VirtualAgency('www.placeholder.com', my_account)
+print(virtual_agency.website)
+print(virtual_agency.check_agency_cash())
+
+virtual_agency.take_from_paypal()
+virtual_agency.deposit_on_paypal()
+virtual_agency.take_from_paypal()
+virtual_agency.deposit_on_paypal()
+
+# testar com dinheiro insuficiente
+my_account.deposit()
+premium_agency.become_client()
+premium_agency.show_clients()
+
+# testar com dinheiro suficiente
+my_account.deposit()
+premium_agency.become_client()
+premium_agency.show_clients()

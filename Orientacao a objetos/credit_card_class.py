@@ -13,7 +13,6 @@ class CreditCard:
 
         checking_account.credit_cards.append(self.__dict__)
 
-
     @staticmethod
     def _generate_number():
         random_number = str(random.randint(1000_0000_0000_0000, 9999_9999_9999_9999))
@@ -25,14 +24,12 @@ class CreditCard:
 
         return f'{first_section} {second_section} {third_section} {fourth_section}'
 
-
     @staticmethod
     def _generate_expiration_date():
         month = datetime.now().month
         year = datetime.now().year + 8
 
         return datetime(year, month, 1).strftime('%m/%y')
-
 
     @staticmethod
     def _generate_cvv():
@@ -42,11 +39,9 @@ class CreditCard:
 
         return f'{first_digit}{second_digit}{third_digit}'
 
-
     @property
     def password(self):
         return self._password
-
 
     @password.setter
     def password(self, new_password):
