@@ -31,9 +31,11 @@ class Agency:
 
         date_and_time = Agency._get_current_date_and_time()
 
-        self._transactions.append(('Person ID:', person_id,
-                                   '| Total borrowed:', value,
-                                   '| Date:', date_and_time))
+        self._transactions.append((
+                                'Person ID:', person_id,
+                                '| Total borrowed:', value,
+                                '| Date:', date_and_time
+        ))
 
     def get_money(self):
         money_to_withdraw = float(input('\nHow much money do you want to withdraw? '))

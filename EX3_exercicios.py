@@ -6,16 +6,20 @@ for indice, valor in enumerate(vendas_2020):
     if valor > vendas_2019[indice]:
         percentual = vendas_2020[indice] / vendas_2019[indice] - 1
 
-        print(f'O produto "{produtos[indice]}" teve {valor:,} vendas em 2020.\n'
-              f'As vendas de 2019 foram de {vendas_2019[indice]:,} unidades.\n'
-              f'Isso representa {percentual:.2%} de aumento.\n')
+        print(
+            f'O produto "{produtos[indice]}" teve {valor:,} vendas em 2020.\n'
+            f'As vendas de 2019 foram de {vendas_2019[indice]:,} unidades.\n'
+            f'Isso representa {percentual:.2%} de aumento.\n'
+        )
 
     else:
         percentual = 1 - vendas_2020[indice] / vendas_2019[indice]
         
-        print(f'O produto "{produtos[indice]}" teve {valor:,} vendas em 2020.\n'
-              f'As vendas de 2019 foram de {vendas_2019[indice]:,} unidades.\n'
-              f'Isso representa {percentual:.2%} de queda.\n')
+        print(
+            f'O produto "{produtos[indice]}" teve {valor:,} vendas em 2020.\n'
+            f'As vendas de 2019 foram de {vendas_2019[indice]:,} unidades.\n'
+            f'Isso representa {percentual:.2%} de queda.\n'
+        )
 
 #####################################################################################################################################################
 print('#' * 60, '\n')
@@ -27,14 +31,18 @@ vendas_produtos = [('iphone', 558147, 951642), ('galaxy', 712350, 244295), ('ipa
 
 for nome, vendas_2019, vendas_2020 in vendas_produtos:
     if vendas_2020 > vendas_2019:
-        print(f'O produto "{nome}" vendeu mais que ano passado.\n'
-              f'Venda em 2019 -> {vendas_2019} | Venda em 2020 -> {vendas_2020}.\n'
-              f'Crescimento foi de {vendas_2020 / vendas_2019 - 1:.2%}.\n')
+        print(
+            f'O produto "{nome}" vendeu mais que ano passado.\n'
+            f'Venda em 2019 -> {vendas_2019} | Venda em 2020 -> {vendas_2020}.\n'
+            f'Crescimento foi de {vendas_2020 / vendas_2019 - 1:.2%}.\n'
+        )
     
     else:
-        print(f'O produto "{nome}" vendeu menos que ano passado.\n'
-              f'Venda em 2019 -> {vendas_2019} | Venda em 2020 -> {vendas_2020}.\n'
-              f'Redução foi de {1 - vendas_2020 / vendas_2019:.2%}.\n')
+        print(
+            f'O produto "{nome}" vendeu menos que ano passado.\n'
+            f'Venda em 2019 -> {vendas_2019} | Venda em 2020 -> {vendas_2020}.\n'
+            f'Redução foi de {1 - vendas_2020 / vendas_2019:.2%}.\n'
+        )
 
 #####################################################################################################################################################
 print('#' * 60, '\n')

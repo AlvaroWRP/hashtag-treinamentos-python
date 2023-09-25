@@ -46,29 +46,39 @@ class CheckingAccount:
         date_and_time = CheckingAccount._get_current_date_and_time()
 
         if transaction_type == 'deposit':
-            self._transactions.append(('Deposit:', value,
-                                       '| New balance:', self.check_balance(),
-                                       '| Date:', date_and_time))
+            self._transactions.append((
+                                    'Deposit:', value,
+                                    '| New balance:', self.check_balance(),
+                                    '| Date:', date_and_time
+            ))
 
         elif transaction_type == 'withdraw':
-            self._transactions.append(('Withdraw:', -value,
-                                       '| New balance:', self.check_balance(),
-                                       '| Date:', date_and_time))
+            self._transactions.append((
+                                    'Withdraw:', -value,
+                                    '| New balance:', self.check_balance(),
+                                    '| Date:', date_and_time
+            ))
 
         elif transaction_type == 'transference':
-            self._transactions.append(('Transference:', -value,
-                                       '| New balance:', self.check_balance(),
-                                       '| Date:', date_and_time))
+            self._transactions.append((
+                                    'Transference:', -value,
+                                    '| New balance:', self.check_balance(),
+                                    '| Date:', date_and_time
+            ))
 
         elif transaction_type == 'receive':
-            self._transactions.append(('Received:', value,
-                                       '| New balance:', self.check_balance(),
-                                       '| Date:', date_and_time))
+            self._transactions.append((
+                                    'Received:', value,
+                                    '| New balance:', self.check_balance(),
+                                    '| Date:', date_and_time
+            ))
 
         elif transaction_type == 'agency':
-            self._transactions.append(('Agency:', value,
-                                       '| New balance:', self.check_balance(),
-                                       '| Date:', date_and_time))
+            self._transactions.append((
+                                    'Agency:', value,
+                                    '| New balance:', self.check_balance(),
+                                    '| Date:', date_and_time
+            ))
 
     def deposit(self):
         money_to_deposit = float(input('\nHow much money do you want to deposit? '))

@@ -6,11 +6,13 @@ my_account = CheckingAccount('Álvaro', '111.222.333-44', '0001', '12345')
 destination_account = CheckingAccount('Nicolas', '555.666.777-88', '0002', '67890')
 
 while True:
-    print('Make a deposit - 1 | ' \
-          'Withdraw cash - 2 | ' \
-          'Check your balance - 3 | ' \
-          'Transfer to another account - 4 | ' \
-          'Finish - 5')
+    print(
+        'Make a deposit - 1 | ' \
+        'Withdraw cash - 2 | ' \
+        'Check your balance - 3 | ' \
+        'Transfer to another account - 4 | ' \
+        'Finish - 5'
+    )
 
     user_choice = input('Choose an option: ')
 
@@ -46,12 +48,14 @@ my_account.show_credit_cards()
 agency_1 = Agency(my_account)
 
 while True:
-    print('Get cash - 1 | ' \
-          'Check your balance - 2 | ' \
-          'Check agency cash - 3 | ' \
-          'Become a client - 4 | ' \
-          'Show all clients - 5 | ' \
-          'Finish - 6')
+    print(
+        'Get cash - 1 | ' \
+        'Check your balance - 2 | ' \
+        'Check agency cash - 3 | ' \
+        'Become a client - 4 | ' \
+        'Show all clients - 5 | ' \
+        'Finish - 6'
+    )
 
     user_choice = input('Choose an option: ')
 
