@@ -1,10 +1,6 @@
 import pandas as pd
 
-dataframe = pd.read_csv(r'Analise de Dados\Contoso - Cadastro Produtos.csv', sep=';')
-print(dataframe, '\n')
-print('*' * 50, '\n')
-
-dataframe = pd.read_csv(r'Analise de Dados\Contoso - Vendas - 2017.csv', sep=';')
+dataframe = pd.read_csv(r'Analise de Dados\Arquivos CSV\Contoso - Vendas - 2017.csv', sep=';')
 print(dataframe, '\n')
 print('*' * 50, '\n')
 
