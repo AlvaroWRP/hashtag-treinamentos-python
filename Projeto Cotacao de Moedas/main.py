@@ -24,7 +24,7 @@ window = tk.Tk()
 
 window.title('Busca de Cotações de Moedas')
 
-window_icon = tk.PhotoImage(file='Projeto Cotacao de Moedas\\coin.png')
+window_icon = tk.PhotoImage(file=r'Projeto Cotacao de Moedas\coin.png')
 window.iconphoto(True, window_icon)
 
 # pega a resolução do monitor
@@ -128,7 +128,7 @@ def update_quotes():
 
                 df.loc[coins_column == coin, date] = bid
 
-        df.to_excel('Projeto Cotacao de Moedas\\Moedas atualizado.xlsx')
+        df.to_excel(r'Projeto Cotacao de Moedas\Moedas atualizado.xlsx')
 
         updated_file_label['text'] = 'Arquivo atualizado com sucesso.'
 

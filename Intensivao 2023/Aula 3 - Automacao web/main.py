@@ -25,7 +25,7 @@ chrome.get('https://www.melhorcambio.com/ouro-hoje')
 gold_quotation = chrome.find_element(By.XPATH, '//*[@id="comercial"]').get_attribute('value')
 gold_quotation = gold_quotation.replace(',', '.')
 
-dataframe_path = 'Aula 3 - Automacao web\\Produtos.xlsx'
+dataframe_path = r'Intensivao 2023\Aula 3 - Automacao web\Produtos.xlsx'
 dataframe_table = pd.read_excel(dataframe_path)
 
 # transforma as cotações antigas para as atuais

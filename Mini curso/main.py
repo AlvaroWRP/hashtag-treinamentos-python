@@ -28,7 +28,7 @@ print(ticket)
 outlook = win32.Dispatch('outlook.application')
 
 mail = outlook.CreateItem(0)
-mail.To = 'alvarowroblewski@gmail.com'
+mail.To = 'email'
 mail.Subject = 'Relatório de Vendas'
 mail.HTMLBody = f'''<p>Bom dia,</p>
 

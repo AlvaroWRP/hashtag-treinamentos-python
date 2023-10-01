@@ -10,7 +10,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 
-dataframe_path = 'Aula 4 - Ciencia de dados\\advertising.csv'
+dataframe_path = r'Intensivao 2023\Aula 4 - Ciencia de dados\advertising.csv'
 
 # uma coisa é entender a tabela, pois os valores de venda são menores que os de investimento.
 # nesse caso, o investimento está em milhares e as vendas em milhões.
@@ -55,11 +55,11 @@ y = dataframe_table['Vendas']
 # x de treino, x de teste, y de treino e y de teste
 train_x, test_x, train_y, test_y = train_test_split(x, y, test_size=0.25)
 
-# cria as IAs (serão usadas 2 para comparação da melhor)
+# cria os modelos (serão usados 2 para comparação da melhor)
 linear_regression_model = LinearRegression()
 random_forest_model = RandomForestRegressor()
 
-# treina elas
+# treina eles
 linear_regression_model.fit(train_x, train_y)
 random_forest_model.fit(train_x, train_y)
 
@@ -87,7 +87,7 @@ sb.lineplot(data=aux_dataframe)
 plt.show()
 
 # recebe uma nova tabela com os gastos futuros em cada canal de comunicação
-new_dataframe = pd.read_csv('Aula 4 - Ciencia de dados\\novos.csv')
+new_dataframe = pd.read_csv(r'Intensivao 2023\Aula 4 - Ciencia de dados\novos.csv')
 print(new_dataframe, '\n')
 
 # faz a previsão das vendas usando os dados da nova tabela

@@ -33,7 +33,7 @@ pag.click(790, 505)
 pag.sleep(2)
 pag.click(1900, 1010)
 
-dataframe_path = 'C:\\Users\\alvar\\Downloads\\Vendas - Dez.xlsx'
+dataframe_path = r'C:\Users\alvar\Downloads\Vendas - Dez.xlsx'
 dataframe_table = pd.read_excel(dataframe_path)
 
 dataframe_table_total_income = sum(dataframe_table['Valor Final'])
@@ -48,7 +48,7 @@ pag.sleep(5)
 
 # colocar destinatário
 pag.click(85, 200)
-pag.write('alvarowroblewski@gmail.com')
+pag.write('email')
 pag.press('enter')
 pag.press('tab')
 

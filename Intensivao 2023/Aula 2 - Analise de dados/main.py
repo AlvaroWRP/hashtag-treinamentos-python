@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-dataframe_path = 'Aula 2 - Analise de dados\\telecom_users.csv'
+dataframe_path = r'Intensivao 2023\Aula 2 - Analise de dados\telecom_users.csv'
 dataframe_table = pd.read_csv(dataframe_path)
 
 # remoção da coluna com dados não úteis para a análise
