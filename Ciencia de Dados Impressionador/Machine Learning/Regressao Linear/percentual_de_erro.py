@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-dataframe = pd.read_excel(r'Ciencia de dados - CDI\Machine Learning\Regressao Linear\dadosVenda.xlsx')
+dataframe = pd.read_excel(r'Ciencia de Dados Impressionador\Machine Learning\Regressao Linear\dadosVenda.xlsx')
 dataframe.loc[dataframe['Desconto'].isnull(), 'Desconto'] = 0
 x = dataframe['PrecoVenda']
 y = dataframe['VendaQtd']

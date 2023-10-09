@@ -1,4 +1,4 @@
-import EX8_SMS_twilio_info as info
+import EX9_SMS_twilio_info as info
 from twilio.rest import Client
 
 account_sid = info.account_sid

@@ -1,9 +1,9 @@
 import pandas as pd
 
-clients_dataframe = pd.read_csv(r'Analise de Dados\Arquivos CSV\Contoso - Clientes.csv', sep=';', encoding='iso-8859-1')
-products_dataframe = pd.read_csv(r'Analise de Dados\Arquivos CSV\Contoso - Cadastro Produtos.csv', sep=';', encoding='iso-8859-1')
-stores_dataframe = pd.read_csv(r'Analise de Dados\Arquivos CSV\Contoso - Lojas.csv', sep=';', encoding='iso-8859-1')
-sales_dataframe = pd.read_csv(r'Analise de Dados\Arquivos CSV\Contoso - Vendas - 2017.csv', sep=';', encoding='iso-8859-1')
+clients_dataframe = pd.read_csv(r'Python Impressionador\Analise de Dados\Arquivos CSV\Contoso - Clientes.csv', sep=';', encoding='iso-8859-1')
+products_dataframe = pd.read_csv(r'Python Impressionador\Analise de Dados\Arquivos CSV\Contoso - Cadastro Produtos.csv', sep=';', encoding='iso-8859-1')
+stores_dataframe = pd.read_csv(r'Python Impressionador\Analise de Dados\Arquivos CSV\Contoso - Lojas.csv', sep=';', encoding='iso-8859-1')
+sales_dataframe = pd.read_csv(r'Python Impressionador\Analise de Dados\Arquivos CSV\Contoso - Vendas - 2017.csv', sep=';', encoding='iso-8859-1')
 
 print(clients_dataframe, '\n')
 print(products_dataframe, '\n')

@@ -1,7 +1,7 @@
 import pandas as pd
 import win32com.client as win32
 
-excel_table_path = r'Mini curso\Vendas.xlsx'
+excel_table_path = r'Python Impressionador\Mini curso\Vendas.xlsx'
 excel_table = pd.read_excel(excel_table_path)
 
 # ajuda na visualização caso a tabela tenha muitas colunas
